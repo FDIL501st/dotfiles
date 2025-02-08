@@ -1,5 +1,10 @@
  #!/bin/bash
 
+if ! [ command -v stow 2>&1 > /dev/null ]; then
+    echo "stow not found on system. Will be now installing it."
+    sudo apt install stow
+fi
+
 # Putting dotfiles into correct place using GNU stow
 stow --adpot *  # first create all symlinks, use adopt to not deal with issues of existing files
 git reset --hard origin/main
