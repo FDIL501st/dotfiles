@@ -1,9 +1,12 @@
  #!/bin/bash
 
-if ! [ command -v stow 2>&1 > /dev/null ]; then
+if ! command -v stow &> /dev/null; then
     echo "stow not found on system. Will be now installing it."
     sudo apt install stow
 fi
+# TODO: Automatically figure out package manager in use
+# will probably just be testing out package managers same way as testing if stow exists or not
+
 
 # Putting dotfiles into correct place using GNU stow
 stow --adpot *  # first create all symlinks, use adopt to not deal with issues of existing files
