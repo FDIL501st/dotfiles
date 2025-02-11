@@ -17,13 +17,17 @@ git reset --hard HEAD
 # actually run stow
 stow .
 
-# Manually install tmux plugins
-mkdir -p ~/.config/tmux/plugins/catppuccin
-mkdir -p ~/.config/tmux/plugins/tpm
+# Before using git clone, need to make sure directories being cloned to don't exist
+TPM_DIR="$HOME/.config/tmux/plugins/tpm"
+CATPUCCIN_TMUX_DIR="$HOME/.config/tmux/plugins/catppuccin/tmux"
+
+[ -d $TPM_DIR ] && rm -rf $TPM_DIR
+[ -d $CATPUCCIN_TMUX_DIR ] && rm -rf $CATPUCCIN_TMUX_DIR
+
 
 # Install TPM and tmux catppuccin plugin, the other tmux plugins are installed using TPM
-git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
-git clone -b v2.1.2 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
+git clone https://github.com/tmux-plugins/tpm $TPM_DIR
+git clone -b v2.1.2 https://github.com/catppuccin/tmux.git $TPM_DIR
 
 
 # Go to https://github.com/catppuccin/grub/tree/main for instructions on setting catppuccin theme for grub
