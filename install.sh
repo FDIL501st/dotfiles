@@ -9,12 +9,15 @@ fi
 
 
 # Putting dotfiles into correct place using GNU stow
-stow --adpot *  # first create all symlinks, use adopt to not deal with issues of existing files
-git reset --hard origin/main
+stow --adopt *  # first create all symlinks, use adopt to not deal with issues of existing files
+git reset --hard main
 # What happened here is when we used adopt, any files that already existed in our system would overwrite the ones in dotfiles.
 # Then to make sure we got the correct versions of all our files, we reset to match what is on the Github repo
 
-# Manually installed tmux plugins
+# actually run stow
+stow .
+
+# Manually install tmux plugins
 mkdir -p ~/.config/tmux/plugins/catppuccin
 mkdir -p ~/.config/tmux/plugins/tpm
 
