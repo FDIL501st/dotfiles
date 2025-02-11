@@ -10,7 +10,7 @@ fi
 
 # Putting dotfiles into correct place using GNU stow
 stow --adopt *  # first create all symlinks, use adopt to not deal with issues of existing files
-git reset --hard main
+git reset --hard HEAD
 # What happened here is when we used adopt, any files that already existed in our system would overwrite the ones in dotfiles.
 # Then to make sure we got the correct versions of all our files, we reset to match what is on the Github repo
 
