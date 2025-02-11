@@ -24,5 +24,4 @@ _darcs
 
 # END OF STOW DEFAULTS
 
-README.md
-install.sh
+^/install.sh
