@@ -1,12 +1,15 @@
  #!/bin/bash
 
-if ! command -v stow &> /dev/null; then
-    echo "stow not found on system. Will be now installing it."
-    sudo apt install stow
+if ! command -v git &> /dev/null; then
+    echo "git not found on system. Install git and try again."
+    exit 1
 fi
-# TODO: Automatically figure out package manager in use
-# will probably just be testing out package managers same way as testing if stow exists or not
+# should not be an issue as long as used git to clone the repo (means not downloading repo as a zip)
 
+if ! command -v stow &> /dev/null; then
+    echo "stow not found on system. Install GNU stow and try again."
+    exit 1
+fi
 
 # Putting dotfiles into correct place using GNU stow
 stow --adopt .  # first create all symlinks, use adopt to not deal with issues of existing files
@@ -23,9 +26,11 @@ CATPUCCIN_TMUX_DIR="$HOME/.config/tmux/plugins/catppuccin/tmux"
 [ -d $CATPUCCIN_TMUX_DIR ] && rm -rf $CATPUCCIN_TMUX_DIR
 
 
-# Install TPM and tmux catppuccin plugin, the other tmux plugins are installed using TPM
+# Install tpm and tmux catppuccin plugin, the other tmux plugins are installed using tpm
 git clone https://github.com/tmux-plugins/tpm $TPM_DIR
-git clone -b v2.1.2 https://github.com/catppuccin/tmux.git $TPM_DIR
+git clone -b v2.1.2 https://github.com/catppuccin/tmux.git $CATPUCCIN_TMUX_DIR
+
+# use ctrl-a + I to install tpm plugins
 
 
 # Go to https://github.com/catppuccin/grub/tree/main for instructions on setting catppuccin theme for grub
