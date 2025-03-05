@@ -25,3 +25,5 @@ _darcs
 # END OF STOW DEFAULTS
 
 install.sh
+install.fish
+.gitignore

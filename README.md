@@ -13,7 +13,7 @@ Run the install script to get symlinks setup so your configurations are read.
 ### With fish
     fish install.fish 
 
-Have not tested running install.sh with other posix compliant shells, like zsh.
+Have not tested running install.sh with other posix compliant shells, like dash or zsh.
 
 ## Setting up plugins
 
@@ -33,6 +33,7 @@ In fish terminal run:
 fisher update
 ```
 This will install (and update) all plugins from the fish_plugins folder.
+No need to install fisher as the repo tracks the fisher files as well. This means that fisher comes "installed" with the repo.
 
 Go to the [Github fisher repo](https://github.com/jorgebucaran/fisher) for more details on fisher.
 
