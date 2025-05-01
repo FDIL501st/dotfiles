@@ -1,4 +1,4 @@
-function update-all --wraps='update && flatpak update && nix profile upgrade --all' --description 'alias update-all update && flatpak update && nix profile upgrade --all'
-  update && flatpak update && nix profile upgrade --all $argv
+function update-all --wraps='update && flatpak update -y && nix profile upgrade --all' --wraps='sudo apt update -y && apt upgrade -y && flatpak update -y && nix profile upgrade --all' --description 'alias update-all sudo apt update -y && apt upgrade -y && flatpak update -y && nix profile upgrade --all'
+  sudo apt update -y && apt upgrade -y && flatpak update -y && nix profile upgrade --all $argv
         
 end
