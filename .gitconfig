@@ -3,6 +3,7 @@
 # Please adapt and uncomment the following lines:
 	name = FDIL
 	email = fdil.fadilh1@gmail.com
+	signingkey = /home/fdil/.ssh/github.pub
 [core]
 	editor = nano
 [init]
@@ -19,3 +20,7 @@
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
