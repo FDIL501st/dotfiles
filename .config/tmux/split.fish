@@ -21,7 +21,7 @@ function create_glow_command
     # by removing check, any command with the file as last arg can open the file in glow
 
     if not string match -r "(?<file>\S+.md)" $command_split[-1]
-        # did not file a file name/path, so no need to update glow command
+        # did not file a file name/path to a markdown, so no need to update glow command
         return
     end
 
@@ -33,11 +33,6 @@ create_glow_command
 set pane_current_path $argv[1]
 
 tmux splitw -h -c "$pane_current_path"
-# for some reason, when splitting pane, 
-# tmux breaks fish's access to nix commands in new pane
-
-# current bandage fix slapped on top is starting up bash shell
-tmux send -t: "bash" C-m
 
 tmux send -t: "$glow_command" C-m
 
