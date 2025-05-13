@@ -17,7 +17,7 @@ function create_glow_command
     end
 
     # maybe logic can be simplified by ignoring checking of command list above and only check for the filename if its there
-    # idea of check above is to only open up the file in glow if viewing/editing file in terminal
+    # idea of check above is to only open up the file in glow if editing file in terminal
     # by removing check, any command with the file as last arg can open the file in glow
 
     if not string match -r "(?<file>\S+.md)" $command_split[-1]
