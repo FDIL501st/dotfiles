@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 
 if ! command -v git > /dev/null 2>&1; then
     echo "git not found on system. Install git and try again."
@@ -22,13 +22,13 @@ git reset --hard
 TPM_DIR="$HOME/.config/tmux/plugins/tpm"
 CATPUCCIN_TMUX_DIR="$HOME/.config/tmux/plugins/catppuccin/tmux"
 
-[ -d $TPM_DIR ] && rm -rf $TPM_DIR
-[ -d $CATPUCCIN_TMUX_DIR ] && rm -rf $CATPUCCIN_TMUX_DIR
+[ -d "$TPM_DIR" ] && rm -rf "$TPM_DIR"
+[ -d "$CATPUCCIN_TMUX_DIR" ] && rm -rf "$CATPUCCIN_TMUX_DIR"
 
 
 # Install tpm and tmux catppuccin plugin, the other tmux plugins are installed using tpm
-git clone https://github.com/tmux-plugins/tpm $TPM_DIR
-git clone -b v2.1.2 https://github.com/catppuccin/tmux.git $CATPUCCIN_TMUX_DIR
+git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
+git clone -b v2.1.2 https://github.com/catppuccin/tmux.git "$CATPUCCIN_TMUX_DIR"
 
 # use ctrl-a + I to install tpm plugins within tmux later
 
