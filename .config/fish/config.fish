@@ -3,8 +3,10 @@ if status is-interactive
 end
 
 # Created by `pipx` on 2025-02-20 00:06:06
-set PATH $PATH /home/fdil/.local/bin
+#set PATH $PATH /home/fdil/.local/bin
 
+# Set up fzf key bindings
+fzf --fish | source
 
 # activate starship for fish
 function starship_transient_prompt_func
