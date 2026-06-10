@@ -1,0 +1,39 @@
+# copied defaults options
+
+# only real thing that matters is which providers I'm using
+# I listed some default providers to use
+# ones not listed are not being used by me
+[providers]
+default = [
+  "desktopapplications",
+  "bluetooth",
+  "files"
+  "calc",
+  "runner",
+  "websearch",
+  "providerlist",
+]
+
+empty = ["desktopapplications"] # providers to be queried when query is empty
+ignore_preview = [] # providers that should not show previews
+max_results = 50 # global max results
+
+[[providers.prefixes]]
+prefix = ";"
+provider = "providerlist"
+
+[[providers.prefixes]]
+prefix = ">"
+provider = "runner"
+
+[[providers.prefixes]]
+prefix = "/"
+provider = "files"
+
+[[providers.prefixes]]
+prefix = "="
+provider = "calc"
+
+[[providers.prefixes]]
+prefix = "@"
+provider = "websearch"
