@@ -3,7 +3,7 @@
 # Please adapt and uncomment the following lines:
 	name = FDIL
 	email = fdil.fadilh1@gmail.com
-	signingkey = /home/fdil/.ssh/github.pub
+	signingkey = /home/fdil/.ssh/github_sign_key.pub
 [core]
 	editor = nano
 [init]
@@ -24,3 +24,9 @@
 	format = ssh
 [commit]
 	gpgsign = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

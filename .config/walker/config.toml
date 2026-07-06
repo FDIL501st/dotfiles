@@ -7,33 +7,40 @@
 default = [
   "desktopapplications",
   "bluetooth",
-  "files"
+  "files",
   "calc",
   "runner",
   "websearch",
   "providerlist",
+  "menus",
 ]
+#
+# empty = ["desktopapplications"] # providers to be queried when query is empty
+# ignore_preview = [] # providers that should not show previews
+max_results = 20 # global max results
 
-empty = ["desktopapplications"] # providers to be queried when query is empty
-ignore_preview = [] # providers that should not show previews
-max_results = 50 # global max results
+# [[providers.prefixes]]
+# prefix = ";"
+# provider = "providerlist"
+#
+# [[providers.prefixes]]
+# prefix = ">"
+# provider = "runner"
+#
+# [[providers.prefixes]]
+# prefix = "/"
+# provider = "files"
+#
+# [[providers.prefixes]]
+# prefix = "="
+# provider = "calc"
+#
+# [[providers.prefixes]]
+# prefix = "@"
+# provider = "websearch"
 
+
+# actual stuff different from defaults that I'm adding
 [[providers.prefixes]]
-prefix = ";"
-provider = "providerlist"
-
-[[providers.prefixes]]
-prefix = ">"
-provider = "runner"
-
-[[providers.prefixes]]
-prefix = "/"
-provider = "files"
-
-[[providers.prefixes]]
-prefix = "="
-provider = "calc"
-
-[[providers.prefixes]]
-prefix = "@"
-provider = "websearch"
+prefix = "\\"
+provider = "menus:power"
