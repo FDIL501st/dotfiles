@@ -1,12 +1,12 @@
 Name = "steam"
-NamePretty = "Steam Games Menu"
+NamePretty = "Steam Games Launcher"
 Icon = "steam"
 Terminal = false
 Cache = true
 -- for the most part, available steam games should not be changing much
 -- only time it changes is when games removed or downloaded
--- restarting the service/computer restart are good times in case download a new game
--- or use clear applications cache command
+-- restarting the computer is a good time to refresh the list of game
+-- restart elephant if want the steam games list to restart immediately
 Action = "%VALUE%"
 
 Home = os.getenv("HOME")
@@ -54,9 +54,10 @@ end
 local function iconToUse(appid)
     local appIcon = "steam_icon_" .. appid
     local iconFile = SteamIconLocation .. appIcon
-    local command = "find "..iconFile.. "-maxdepth 1"
+    local command = "find " .. iconFile .. ".png -maxdepth 1"
+    -- assuming steam stores the icons as .png files for all games
     local result = os.execute(command)
-    if result == true then
+    if result then
         return appIcon
     end
     -- did not find file (command failed)
