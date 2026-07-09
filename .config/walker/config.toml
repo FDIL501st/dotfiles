@@ -44,3 +44,7 @@ max_results = 20 # global max results
 [[providers.prefixes]]
 prefix = "\\"
 provider = "menus:power"
+
+[[providers.prefixes]]
+prefix = "/s"
+provider = "menus:steam"
