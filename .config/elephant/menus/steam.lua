@@ -10,7 +10,9 @@ Cache = true
 Action = "%VALUE%"
 
 Home = os.getenv("HOME")
-SteamAppInfoLocation = Home .. "/.steam/steam/steamapps/"
+SteamAppInfoLocations = { Home .. "/.steam/steam/steamapps/", "/mnt/steam_games/SteamLibrary/steamapps/" }
+-- list of all possible locations for steam games
+-- first one is default locations, second location is where I actually store my games on
 SteamIconLocation = Home .. "/.local/share/icons/hicolor/32x32/apps/"
 DefaultGameIcon = "steam"
 -- It seems game icons only exist when ask steam to create a desktop shortcut (deleting the desktop shortcut still keeps the icon in the system)
@@ -39,8 +41,10 @@ end
 -- Checks if the appid needs to be ignored. Ignore means not adding to entries.
 -- returns true to ignore, else false
 local function ignoreAppid(appid)
-    -- appid for steam linux runtimes
-    local ignore_appid = { "1070560", "1391110", "228980", "4183110" }
+    -- appid for steam linux runtimes, proton and more
+    -- is not comprehensive
+    -- feel free to add if find stuff you don't want showing up
+    local ignore_appid = { "1070560", "1391110", "228980", "4183110", "1493710" }
     for _, id in ipairs(ignore_appid) do
         if appid == id then
             return true
@@ -65,7 +69,12 @@ local function iconToUse(appid)
 end
 
 function GetEntries()
-    local command = "find " .. SteamAppInfoLocation .. " -maxdepth 1".. " -name '*.acf'"
+    local dirs_to_look = ""
+    for _, dir in ipairs(SteamAppInfoLocations) do
+        dirs_to_look = dirs_to_look .. dir .. " "
+        -- end up adding an extra space at the end, doesn't affect the find command
+    end
+    local command = "find " .. dirs_to_look .. " -maxdepth 1".. " -name '*.acf'"
     local handle = io.popen(command)
     if handle == nil then
         print("Did not expect command: " .. command .. ", to return nil")
