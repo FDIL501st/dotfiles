@@ -17,6 +17,9 @@ SteamIconLocation = Home .. "/.local/share/icons/hicolor/32x32/apps/"
 DefaultGameIcon = "steam"
 -- It seems game icons only exist when ask steam to create a desktop shortcut (deleting the desktop shortcut still keeps the icon in the system)
 -- location seems to be $HOME/.local/share/icons/hicolor/32x32/apps/ for all games? Hopefully
+IgnoreAppID = { "1070560", "1391110", "228980", "4183110", "1493710" }
+-- appid for steam linux runtimes, proton and more, is not comprehensive
+-- feel free to add if you find stuff you don't want showing up
 
 local function readlines(file)
     local f = io.open(file, "r")
@@ -41,11 +44,7 @@ end
 -- Checks if the appid needs to be ignored. Ignore means not adding to entries.
 -- returns true to ignore, else false
 local function ignoreAppid(appid)
-    -- appid for steam linux runtimes, proton and more
-    -- is not comprehensive
-    -- feel free to add if find stuff you don't want showing up
-    local ignore_appid = { "1070560", "1391110", "228980", "4183110", "1493710" }
-    for _, id in ipairs(ignore_appid) do
+    for _, id in ipairs(IgnoreAppID) do
         if appid == id then
             return true
         end
@@ -57,14 +56,13 @@ end
 -- if icon file found, then return icon name for the app. Otherwise returns the default game icon.
 local function iconToUse(appid)
     local appIcon = "steam_icon_" .. appid
-    local iconFile = SteamIconLocation .. appIcon
-    local command = "find " .. iconFile .. ".png -maxdepth 1"
-    -- assuming steam stores the icons as .png files for all games
-    local result = os.execute(command)
-    if result then
+    local iconFile = SteamIconLocation .. appIcon .. ".png"
+    local f = io.open(iconFile, "r")
+    -- if able to open, then icon exists
+    if f then
+        f:close()
         return appIcon
     end
-    -- did not find file (command failed)
     return DefaultGameIcon
 end
 
